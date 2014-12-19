@@ -1,0 +1,183 @@
+%\documentclass[12pt,oneside]{book}
+\documentclass[12pt,twoside,openright]{book}
+
+\input{preamble}
+
+
+\usepackage{threeparttable}
+\usepackage{changepage}
+\usepackage{booktabs,caption,fixltx2e}
+\usepackage{multirow}
+
+\title{
+	\begin{center}
+	\vspace{-5cm}
+	\begin{figure}[htbp]			
+	\begin{center}
+	%\hspace{0.3cm} %%% your logos
+%	\includegraphics[scale=1.1]{./logo/logo3lbp.eps} \hspace{1.5cm}
+%		\includegraphics[scale=0.35]{./logo/fnrs.eps} 
+	\end{center}
+	\end{figure}
+	\vspace{1.5cm}
+		\begin{tabular}{c}
+			\large{University of XXX}\\[-0.2cm]
+			\large {Great Department}\\[-0.2cm]
+			%\large {Unit}
+			\vspace{0.2cm}
+		\end{tabular}
+	\end{center}
+\vspace{1.5cm}
+{\rule{\linewidth}{0.05cm}}
+{\textbf{\LARGE{Main title}}}\linebreak
+{\Large subtitle}
+{\rule{\linewidth}{0.05cm}}
+}
+\author{
+First name Last name\\[1cm] Thesis presented ...  \\ in .... \\[1cm]
+Supervisors: Prof and Prof \\[2cm]
+}
+
+\date{Draft \\ \today \\ \vfill Academic Year 2014 - 2015}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty}
+\newpage
+\mbox{}
+
+\pagebreak
+\thispagestyle{empty}
+
+\begin{center}
+\Large \textbf{Under the supervision of} \\[0.5cm]  \large
+
+\end{center}
+\vspace{1cm}
+\begin{center}
+\Large \textbf{Jury members} \\[0.5cm]  \large
+\end{center}
+
+\pagebreak
+
+\pagenumbering{roman} \setcounter{page}{1} 
+\chapter*{Foreword} 
+\addcontentsline{toc}{chapter}{Foreword} 
+
+%\input{thanks}
+\vfill
+
+\pagebreak
+%
+\thispagestyle{empty}
+\mbox{}
+\vspace{5cm}
+\begin{flushright}
+\emph{``It always seems impossible until it's done''}\\[0.2cm]
+Nelson Mandela
+\end{flushright}
+\vfill
+\pagebreak
+
+
+\tableofcontents 
+
+\pagebreak
+
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures} 
+\vfill
+
+\pagebreak
+
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\vfill
+ 
+\pagebreak
+
+\addcontentsline{toc}{chapter}{List of Acronyms}
+\footnotesize
+\chapter*{List of Acronyms}
+\begin{spacing}{1}
+\begin{acronym}
+\acro{mics}[MICS]{Multiple Indicators Cluster Survey}
+\acro{ols}[OLS]{Ordinary Least Squares}
+\acro{hcr}[UNHCR]{United Nations High Commissioner for Refugees}
+\end{acronym}
+\end{spacing}
+\vfill
+
+
+
+\pagebreak
+\normalsize
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\sffamily #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\sffamily #1}}
+\lhead[\sffamily \thepage]{\rightmark}
+\rhead[\leftmark]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
+
+\pagenumbering{arabic} \setcounter{page}{1} 
+\chapter*{General Introduction} 
+
+\addcontentsline{toc}{chapter}{General Introduction} 
+\markboth{}{\sffamily{General Introduction}}
+
+\input{./intro/generalintro}
+
+\pagebreak
+
+\chapter[short Title of chapter 1]{Full Title of chapter 1}\label{chap1}
+\normalsize
+
+%\input{./chap1/sections/Intro}	
+%\input{./chap1/sections/data}
+%\input{./chap1/sections/results}
+%\input{./chap1/sections/discussion}
+%\input{./chap1/sections/conclusion}
+
+\chapter[short title of chapter 2]{Full title of chapter 2}\label{chap2}
+\vspace{-0.5cm}
+\hfill \sffamily{{joint with Superman}}
+
+\vspace{0.5cm}
+\normalfont
+
+
+\newpage
+\noindent \Large{{\textbf{\sffamily{{Appendix}}}}}
+\normalsize
+\begin{subappendices}
+\renewcommand{\setthesection}{\Alph{section}} 
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+%\input{./chap2/appendix/appendix}
+\end{subappendices}
+
+
+
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion} 
+\markboth{}{\sffamily{Conclusion}}
+
+\input{conclusion}
+
+\pagebreak
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead[\leftmark]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
+
+\nocite* %% to have a bibliography, remove that if you want only the cited paper to appear
+\bibliographystyle{bibstyle.bst}
+\bibliography{bib.bib}
+
+\appendix
+
+
+\end{document}
