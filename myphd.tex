@@ -2,74 +2,85 @@
 \documentclass[12pt,twoside,openright]{book}
 
 \input{preamble}
-
-
+%% uncoment doublespace to have double spacing
+\usepackage{setspace}%\doublespace %\onehalfspacing
 \usepackage{threeparttable}
 \usepackage{changepage}
 \usepackage{booktabs,caption,fixltx2e}
 \usepackage{multirow}
+\usepackage[justification=centering]{caption}
+\usepackage{placeins}
+\usepackage{emptypage} %clears all number from cleardoublepage
 
+\newenvironment{ltable} %% table will automatically be landscaped
+  {\begin{landscape}\begin{table}}
+  {\end{table}\end{landscape}}
+
+    
+%% appendix packages
+\usepackage{appendix}
+\usepackage{titlesec}
+\usepackage{chngcntr}
+\usepackage{etoolbox}
+
+%% allows for subappendices (or appendix by chapter)
+\AtBeginEnvironment{subappendices}{%
+}
+
+
+%%%%% Title
 \title{
 	\begin{center}
 	\vspace{-5cm}
 	\begin{figure}[htbp]			
 	\begin{center}
-	%\hspace{0.3cm} %%% your logos
-%	\includegraphics[scale=1.1]{./logo/logo3lbp.eps} \hspace{1.5cm}
-%		\includegraphics[scale=0.35]{./logo/fnrs.eps} 
+	%% your logos
+            %	\includegraphics[scale=1.1]{./logo/logo3lbp.eps} \hspace{1.5cm}
+            %	\includegraphics[scale=0.35]{./logo/fnrs.eps} \\[0.5cm]
+            %	\includegraphics[scale=0.6]{./logo/solvay.eps} \hspace{1.5cm}
+            %	\includegraphics[scale=0.09]{./logo/ECARES-logo-b&w-notext.jpg} \\[1.5cm]
 	\end{center}
 	\end{figure}
-	\vspace{1.5cm}
 		\begin{tabular}{c}
 			\large{University of XXX}\\[-0.2cm]
 			\large {Great Department}\\[-0.2cm]
-			%\large {Unit}
+			\large {Great Center}
 			\vspace{0.2cm}
 		\end{tabular}
 	\end{center}
 \vspace{1.5cm}
 {\rule{\linewidth}{0.05cm}}
-{\textbf{\LARGE{Main title}}}\linebreak
+{\textbf{\LARGE{Main title}}}\linebreak\\[-0.5cm]
 {\Large subtitle}
 {\rule{\linewidth}{0.05cm}}
 }
 \author{
-First name Last name\\[1cm] Thesis presented ...  \\ in .... \\[1cm]
-Supervisors: Prof and Prof \\[2cm]
+your name\\[1cm] Thesis presented \\ in \\[1cm]
 }
 
-\date{Draft \\ \today \\ \vfill Academic Year 2014 - 2015}
+\date{\vfill Academic year YYYY - YYYY}
 
 \begin{document}
 \maketitle
 
-\thispagestyle{empty}
-\newpage
-\mbox{}
 
-\pagebreak
-\thispagestyle{empty}
+\cleardoublepage %% makes the next page/chapter an odd number (for printing purposes)
+
 
 \begin{center}
 \Large \textbf{Under the supervision of} \\[0.5cm]  \large
-
+Professor x \\ \normalsize 
+(University of.... ) \\[0.3cm]   \large
+Professor y \\ \normalsize
+(University of ... )
 \end{center}
 \vspace{1cm}
 \begin{center}
 \Large \textbf{Jury members} \\[0.5cm]  \large
 \end{center}
 
-\pagebreak
+\cleardoublepage
 
-\pagenumbering{roman} \setcounter{page}{1} 
-\chapter*{Foreword} 
-\addcontentsline{toc}{chapter}{Foreword} 
-
-%\input{thanks}
-\vfill
-
-\pagebreak
-%
 \thispagestyle{empty}
 \mbox{}
 \vspace{5cm}
@@ -78,41 +89,77 @@ Supervisors: Prof and Prof \\[2cm]
 Nelson Mandela
 \end{flushright}
 \vfill
-\pagebreak
 
+\cleardoublepage
+
+%% makes headings "Acknowledgments" and page number
+\pagestyle{fancy}
+\fancyhf{}
+\lhead[\sffamily \thepage]{\sffamily Acknowledgements}
+\rhead[\sffamily Acknowledgements]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
+
+\pagenumbering{roman} \setcounter{page}{1} %% page numbers in i, ii, iii
+
+\chapter*{Acknowledgements} %% unnumbered chapter 
+\addcontentsline{toc}{chapter}{Acknowledgements}  %% add to TOC
+
+\input{thanks} %% input the .tex with acknowledgments (named "thanks")
+\cleardoublepage
+
+%% makes heading "Contents" and page number
+\pagestyle{fancy}
+\fancyhf{}
+\lhead[\sffamily \thepage]{\sffamily Contents}
+\rhead[\sffamily Contents]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
 
 \tableofcontents 
 
-\pagebreak
+\cleardoublepage
+
+%% makes heading "List of Figures" and page number
+\pagestyle{fancy}
+\fancyhf{}
+\lhead[\sffamily \thepage]{\sffamily List of Figures}
+\rhead[\sffamily List of Figures]{\sffamily \thepage } 
+\renewcommand{\headrulewidth}{0.5pt}
 
 \listoffigures
-\addcontentsline{toc}{chapter}{List of Figures} 
+\addcontentsline{toc}{chapter}{List of Figures} %% adds "List of Figures" to TOC
 \vfill
 
-\pagebreak
+\cleardoublepage
+
+%% makes heading "List of Tables" and page number
+\pagestyle{fancy}
+\fancyhf{}
+\lhead[\sffamily \thepage]{\sffamily List of Tables}
+\rhead[\sffamily List of Tables]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
 
 \listoftables
-\addcontentsline{toc}{chapter}{List of Tables}
+\addcontentsline{toc}{chapter}{List of Tables} %% adds "List of Tables" to TOC
 \vfill
  
-\pagebreak
+\cleardoublepage
 
 \addcontentsline{toc}{chapter}{List of Acronyms}
 \footnotesize
 \chapter*{List of Acronyms}
 \begin{spacing}{1}
 \begin{acronym}
-\acro{mics}[MICS]{Multiple Indicators Cluster Survey}
-\acro{ols}[OLS]{Ordinary Least Squares}
-\acro{hcr}[UNHCR]{United Nations High Commissioner for Refugees}
+\acro{aa}[AA]{Adultes Associés}
+\acro{afdl}[AFDL]{Alliance of Democratic Forces for the Liberation of Congo-Zaïre}
+\acro{arn}[ARN]{Armée de Résistance Nationale}
+\acro{arp}[ARP]{Armée Patriotique Rwandaise}
 \end{acronym}
 \end{spacing}
 \vfill
 
-
-
-\pagebreak
 \normalsize
+
+\cleardoublepage
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -122,43 +169,137 @@ Nelson Mandela
 \rhead[\leftmark]{\sffamily \thepage }
 \renewcommand{\headrulewidth}{0.5pt}
 
-\pagenumbering{arabic} \setcounter{page}{1} 
+\pagenumbering{arabic} \setcounter{page}{1}  %% page numbers in 1, 2, 3
 \chapter*{General Introduction} 
 
-\addcontentsline{toc}{chapter}{General Introduction} 
-\markboth{}{\sffamily{General Introduction}}
+\addcontentsline{toc}{chapter}{General Introduction} %% adds General Introduction to TOC
+\markboth{}{\sffamily{General Introduction}}  %% updates heading
+\input{./intro/generalintro} %% input intro (which is in sub-folder intro)
+\cleardoublepage
 
-\input{./intro/generalintro}
+% single authored chapter
+\chapter[Short title]{Full title chapter 1}\label{chap1}
+\vspace{-0.5cm}
 
-\pagebreak
-
-\chapter[short Title of chapter 1]{Full Title of chapter 1}\label{chap1}
 \normalsize
 
-%\input{./chap1/sections/Intro}	
-%\input{./chap1/sections/data}
-%\input{./chap1/sections/results}
-%\input{./chap1/sections/discussion}
-%\input{./chap1/sections/conclusion}
+%% input your sections:
+    %\input{./chap1/sections/Intro}	
+    %\input{./chap1/sections/refugeecrisis}
+    %\input{./chap1/sections/data}
+    %\input{./chap1/sections/results}
+    %\input{./chap1/sections/discussion}
+    %\input{./chap1/sections/conclusion}
+\cleardoublepage
 
-\chapter[short title of chapter 2]{Full title of chapter 2}\label{chap2}
+\pagestyle{fancy} %% update headings for "Appendix" and page numbers
+\fancyhf{}
+\lhead[\sffamily \thepage]{\sffamily Appendix}
+\rhead[\sffamily chapter short title]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
+
+\begin{subappendices}
+\chapter*{Appendix} %% only one appendix
+\addcontentsline{toc}{chapter}{Appendix} 
+	%	\input{./chap1/appendix/Appendix_tables}
+\end{subappendices}
+\cleardoublepage
+
+\pagestyle{fancy} %% back to appendix "chapter/section" and page numbers
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\sffamily #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\sffamily #1}}
+\lhead[\sffamily \thepage]{\rightmark}
+\rhead[\leftmark]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
+
+\chapter[Short title]{Full title chapter 2}\label{chap2}
 \vspace{-0.5cm}
-\hfill \sffamily{{joint with Superman}}
+\hfill \sffamily{{joint work with ... (University of ...)}}
 
 \vspace{0.5cm}
 \normalfont
 
+%% input your sections:
+    %\input{./chap2/sections/introduction}
+    %\input{./chap2/sections/methododatamerged_v2}
+    %\input{./chap2/sections/results_new}
+    %\input{./chap2/sections/discussion}
+    %\input{./chap2/sections/conclusion}
+\cleardoublepage
 
-\newpage
-\noindent \Large{{\textbf{\sffamily{{Appendix}}}}}
-\normalsize
+		%% multiple appendices
 \begin{subappendices}
-\renewcommand{\setthesection}{\Alph{section}} 
-\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
-%\input{./chap2/appendix/appendix}
+\chapter*{Appendices}
+\addcontentsline{toc}{chapter}{Appendices}
+  \renewcommand\thesection{\Alph{section}} %% numbered A, B, C
+%	\input{./chap2/appendix/appendixdataconstruction}
+%	\input{./chap2/appendix/appendixattrition}
 \end{subappendices}
 
+\cleardoublepage
 
+
+\chapter[Short title]{Full title chapter 3}\label{chap3}
+\vspace{-0.5cm}
+\hfill \sffamily{{joint work with ... (University of ...)}}
+
+\vspace{0.5cm}
+\normalfont
+
+%% input your sections:
+    %\input{./chap3/sections/introduction}
+    %\input{./chap3/sections/identification}
+    %\input{./chap3/sections/data}
+    %\input{./chap3/sections/estimationmethod}
+    %\input{./chap3/sections/results}
+    %\input{./chap3/sections/robust}
+    %\input{./chap3/sections/discussion}
+    %\input{./chap3/sections/conclusions}
+\cleardoublepage
+
+%% change heading to "chapter/Appendix" and page number.
+\pagestyle{fancy}
+\fancyhf{}
+\lhead[\sffamily \thepage]{\sffamily Appendix}
+\rhead[\sffamily Chapter short title ]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
+
+
+\begin{subappendices}
+\chapter*{Appendix} %% if you have only one appendix.
+\addcontentsline{toc}{chapter}{Appendix}
+	%% input appendix here:
+	%\input{./chap3/appendix/AppendixDsupplementarytables}
+\end{subappendices}
+
+\cleardoublepage
+
+%% change heading to "chapter/section" and page number.
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\sffamily #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\sffamily #1}}
+\lhead[\sffamily \thepage]{\rightmark}
+\rhead[\leftmark]{\sffamily \thepage }
+\renewcommand{\headrulewidth}{0.5pt}
+
+\chapter[Short title]{Full title chapter 4}\label{chap4}
+\vspace{-0.5cm}
+\hfill \sffamily{{joint work with ... (University of ...)}}
+
+\vspace{0.5cm}
+\normalfont
+
+%% input your sections:
+    %\input{./chap4/sections/introduction}
+    %\input{./chap4/sections/justiceshortshort}
+    %\input{./chap4/sections/model6story}
+    %\input{./chap4/sections/discussion}
+    %\input{./chap4/sections/efficiency}
+    %\input{./chap4/sections/conclusion}
+    
+\cleardoublepage 
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion} 
@@ -166,18 +307,21 @@ Nelson Mandela
 
 \input{conclusion}
 
-\pagebreak
+\cleardoublepage
 
+%% change heading to "Bibliography" and page number.
 \pagestyle{fancy}
 \fancyhf{}
-\rhead[\leftmark]{\sffamily \thepage }
+\lhead[\sffamily \thepage]{\sffamily Bibliography}
+\rhead[\sffamily Bibliography]{\sffamily \thepage }
 \renewcommand{\headrulewidth}{0.5pt}
 
-\nocite* %% to have a bibliography, remove that if you want only the cited paper to appear
-\bibliographystyle{bibstyle.bst}
-\bibliography{bib.bib}
-
-\appendix
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%% I use Mendeley as reference manager. 
+	%% this styles allows you to have working paper series. They should be stored under 		the "Report" type, and the field "institution" has to be the series, and the field "issue" would be 	the number of the WP. The WP that are not part of a series should be under the "Thesis" type, 	and will appear with "mimeo." at the end. The "generic" type only contains the title. 
+	%% the rest is as usual.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\bibliographystyle{bibstyle_wp.bst}
+\bibliography{aah-phd}
 
 \end{document}

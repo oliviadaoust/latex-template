@@ -1,28 +1,15 @@
-\begin{thebibliography}{4}
-\newcommand{\enquote}[1]{``#1''}
+\begin{thebibliography}{1}
 \providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
 
-\bibitem[{Ashraf \emph{et~al.}(2010)Ashraf, Karlan and Yin}]{Ashraf2010}
-{Ashraf, N., D.~Karlan and W.~Yin} (2010), \enquote{{Female Empowerment: Impact
-  of a Commitment Savings Product in the Philippines}}, \emph{World
-  Development}, 38(3), 333--344.
-
-\bibitem[{Bobonis and Finan(2009)}]{bobonis}
-{Bobonis, G.~J. and F.~Finan} (2009), \enquote{{Neighborhood peer effects in
-  secondary school enrollment decisions}}, \emph{The Review of Economics and
-  Statistics}, 91(4), 695--716.
-
-\bibitem[{Donni and Chiappori(2009)}]{Chiappori2009}
-{Donni, O. and P.-A. Chiappori} (2009), \enquote{{Non-unitary models of
-  household behavior: a survey of the literature}}, in \enquote{Household
-  Economic Behaviors}, Springer, p. 1--40.
-
-\bibitem[{Fafchamps \emph{et~al.}(2009)Fafchamps, Kebede and
-  Quisumbing}]{Fafchamps2009}
-{Fafchamps, M., B.~Kebede and A.~R. Quisumbing} (2009),
-  \enquote{{Intrahousehold Welfare in Rural Ethiopia}}, \emph{Oxford Bulletin
-  of Economics and Statistics}, 71(4), 567--599.
+\bibitem[{Martin(1984)}]{Martin1984}
+Martin, G. (1984) {Munchausen's Statistical Grid, which Makes All Trials
+  Significant}. \emph{The Lancet} 324(8417-8418), 1457.
 
 \end{thebibliography}
